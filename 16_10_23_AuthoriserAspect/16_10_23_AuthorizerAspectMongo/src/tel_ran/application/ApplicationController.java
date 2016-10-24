@@ -46,12 +46,10 @@ public class ApplicationController {
 		call(MethodName.set2);	
 			
 		System.out.println("_____________________ test call unAnnotated method___________________________");
-		myClass = (AplicationClass) ctx.getBean("aplicationClass");
-				
+		
+		tryToLogin("Ira", "12");		
 		call(MethodName.get1);
-		call(MethodName.get3);
-		call(MethodName.set1);
-		call(MethodName.set2);	
+		call(MethodName.get3);	
 		
 		ctx.close();
 	}
@@ -77,8 +75,7 @@ public class ApplicationController {
 		} catch (SecurityException e1) {
 			System.out.println(e1.getMessage());
 		}
-		
-		
+	
 	}
 
 
