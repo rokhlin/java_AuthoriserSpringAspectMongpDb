@@ -7,12 +7,8 @@ import tel_ran.mongo.dao.AccauntsDao;
 
 
 public class Authenticater {
-//	private Map<String, String> rulesPasswords;  //key - role, value-password
 	private Map<Object, String> authObjects = new HashMap<Object, String>();  //key - reference to object, value - role
 	private AccauntsDao db;
-	
-	
-	
 	
 	public Authenticater() {
 		super();
@@ -23,36 +19,16 @@ public class Authenticater {
 		this.db = db;
 	}
 
-	
-
-//
-//	public Map<String, String> getRulesPasswords() {
-//		return rulesPasswords;
-//	}
-//
-//	public void setRulesPasswords(Map<String, String> rulesPasswords) {
-//		this.rulesPasswords = rulesPasswords;
-//	}
-
-	public Map<Object, String> getAuthObjects() {
-		return authObjects;
-	}
-
-	public void setAuthObjects(Map<Object, String> authObjects) {
-		this.authObjects = authObjects;
-	}
-
 	/**
 	 * 
 	 * @param role
 	 * @param password
 	 * @param object
-	 * @return true if password matches role, 
+	 * @return true if userName and password matches the user account in database, 
 	 */
 	public boolean authenticate(String userName, String password, Object object) {
 		String role = db.getRole(userName, password);
-		if(role == null) 
-			return false;
+		if(role == null) return false;
 		
 		authObjects.put(object, role);
 		return true;
