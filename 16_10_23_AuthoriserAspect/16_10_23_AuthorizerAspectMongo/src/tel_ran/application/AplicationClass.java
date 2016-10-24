@@ -30,22 +30,32 @@ public class AplicationClass {
 		return authenticater.authenticate(role, password, this);
 	}
 	
+	/**
+	 * This is a public method that can be call only with the admin role
+	 */
 	@Authorized(roles = {"admin"})
 	public void set1() {
 		 System.out.println("set1");
 	}
 	
+	/**
+	 * This is a public method that can be call with user and admin roles
+	 */
 	@Authorized(roles = {"admin","user"})
 	public void set2() {
 		System.out.println("set2");
 	} 
 	
-	
+	/**
+	 * This is a public method that can be call for the all registered users
+	 */
 	public void get1() {
 		System.out.println("get1");
 	} 
 	
-	
+	/**
+	 * This is a public method that can be call for the all registered users
+	 */
 	public void get3() {
 		System.out.println("get3");
 	}
