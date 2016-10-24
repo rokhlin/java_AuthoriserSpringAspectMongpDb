@@ -37,7 +37,6 @@
 		</constructor-arg>
 	</bean>
 
-
 	<bean id="authoriserBean" class="tel_ran.security.aop.Authorizer">
 		<constructor-arg name="accounter">
 			<ref bean="accounter" />
@@ -60,10 +59,6 @@
 	
 	<bean id ="MongoAccauntsDao"  class="tel_ran.mongo.dao.AccauntsDao"> </bean>
 
-	
-
-
-
 	<aop:aspectj-autoproxy />
 	<aop:config>
 		<aop:aspect ref="authoriserBean"> <!--reference to aspect -->
@@ -76,5 +71,5 @@
 		</aop:aspect>
 	</aop:config>
 
-<mongo:repositories base-package="tel_ran.mongo.repository"></mongo:repositories>
+	<mongo:repositories base-package="tel_ran.mongo.repository"></mongo:repositories>
 </beans>

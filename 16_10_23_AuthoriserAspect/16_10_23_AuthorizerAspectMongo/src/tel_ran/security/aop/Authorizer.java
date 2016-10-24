@@ -14,7 +14,7 @@ import tel_ran.security.Authenticater;
 
 public class Authorizer {
 	private Map<String, Set<String>> rulesMethods = new HashMap<>(); //key -  method, value - set of the permitted role names 
-	private Set<String> freeMethods  = new HashSet<>();
+	private Set<String> freeMethods  = new HashSet<>(); //Set contains all method names available to run for all registered users
 	
 	private Authenticater authenticater;
 	private Accounter accounter;
@@ -35,12 +35,19 @@ public class Authorizer {
 
 
 
-
+	/**
+	 * This method will to call always if the user will run an inspecting method 
+	 * @param joinPoint
+	 * @return
+	 * @throws Throwable Security Exception: 
+	 * 			401- if we have unauthorized user, 
+	 * 			403 - if the user didn't get permission for calling that method.
+	 */
 	public Object authorize(ProceedingJoinPoint joinPoint) throws Throwable {
 		fillRulesMethods(joinPoint);
+		
 		Object obj = joinPoint.getTarget();
 		String calledMethod = joinPoint.getSignature().getName();
-		
 		String role = authenticater.getRole(obj);
 		
 		if (obj != null) {
