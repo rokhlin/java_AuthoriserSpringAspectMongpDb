@@ -6,8 +6,6 @@ import tel_ran.security.Authenticater;
 public class AplicationClass {
 	Authenticater authenticater;
 	
-	
-	
 	public Authenticater getAuthenticater() {
 		return authenticater;
 	}
@@ -42,9 +40,11 @@ public class AplicationClass {
 		System.out.println("set2");
 	} 
 	
+	
 	public void get1() {
 		System.out.println("get1");
 	} 
+	
 	
 	public void get3() {
 		System.out.println("get3");
