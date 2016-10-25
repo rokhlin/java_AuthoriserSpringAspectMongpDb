@@ -73,7 +73,6 @@ public class Authorizer {
 		Method[] methods = joinPoint.getTarget().getClass().getDeclaredMethods();
 		
 		for (Method method : methods) {
-			method.getParameterTypes()
 			if(method.isAnnotationPresent(Authorized.class)) {
 				String[] roles = method.getAnnotation(Authorized.class).roles();
 				Set<String> rolesSet = new HashSet<>();
