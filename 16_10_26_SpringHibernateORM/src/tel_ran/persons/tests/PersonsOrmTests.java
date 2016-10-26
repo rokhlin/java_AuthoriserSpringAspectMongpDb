@@ -3,6 +3,8 @@ package tel_ran.persons.tests;
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -57,7 +59,7 @@ public class PersonsOrmTests {
 	}
 	
 	@After
-	public static void tearDown() throws Exception {
+	public void tearDown() throws Exception {
 		orm.removePerson(ID);
 	}
 	
@@ -81,5 +83,15 @@ public class PersonsOrmTests {
 		assertEquals("Get Person Before remove", p ,orm.getPerson(ID));
 		orm.removePerson(ID);
 		assertEquals("Get Person After remove", null,orm.getPerson(ID));
+	}
+	
+	@Test
+	public void testGetPersonsByMonth() {
+		List<Person> actual = orm.getPersonsByMonth(11);
+		Person[] actualArray = actual.toArray(new Person[actual.size()]);
+		Arrays.sort(personsNov,(a,b)->a.getId() - b.getId());
+		Arrays.sort(actualArray,(a,b)->a.getId() - b.getId());
+		assertArrayEquals("Get Persons By Month",personsNov, actualArray);
+		
 	}
 }
