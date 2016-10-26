@@ -26,7 +26,7 @@ public class PersonOrmTestCreationAppl {
 		
 		try(AbstractApplicationContext context = new FileSystemXmlApplicationContext("beans.xml");){
 			orm = context.getBean(PersonsORM.class);
-			createPersons(persons);
+			createPersons(persons, orm);
 			updatePerson(123, new Address("Ramat Gan", "Jabotinsky", 20));
 			
 		}
@@ -39,9 +39,9 @@ public class PersonOrmTestCreationAppl {
 
 	
 
-	public static void createPersons(Person[] persons) {
+	public static void createPersons(Person[] persons, PersonsORM ormm) {
 		for (Person person : persons) {
-			orm.addPerson(person);
+			ormm.addPerson(person);
 		}
 	}
 	

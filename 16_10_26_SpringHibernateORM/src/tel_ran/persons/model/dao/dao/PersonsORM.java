@@ -1,7 +1,10 @@
 package tel_ran.persons.model.dao.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,30 +53,34 @@ public class PersonsORM {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@SuppressWarnings("unchecked")
+	public List<Person> getPersonsByMonth(int month){
+		Query query = entityManager.createQuery(String.format("SELECT p FROM Person p WHERE month(p.birthDate)=%d", month));
+		return query.getResultList();
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
