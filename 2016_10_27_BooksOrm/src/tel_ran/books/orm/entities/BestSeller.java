@@ -30,6 +30,15 @@ public class BestSeller extends LiteratureBook {
 	public void setYearSeller(int yearSeller) {
 		this.yearSeller = yearSeller;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "BestSeller [yearSeller=" + yearSeller + ", publishYear=" + publishYear + ", isbn=" + isbn + ", authors="
+				+ authors + ", title=" + title + ", price=" + price + ", pages=" + pages + ", publisher=" + publisher
+				+ "]";
+	}
 	
 	
 

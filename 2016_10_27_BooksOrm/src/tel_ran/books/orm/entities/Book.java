@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Book {
+public abstract class Book {
 	@Id
 	long isbn;
 	String authors;
@@ -24,7 +24,7 @@ public class Book {
 	}
 	
 	public Book() {
-		super();
+		
 	}
 
 	public long getIsbn() {
@@ -75,11 +75,8 @@ public class Book {
 		this.publisher = publisher;
 	}
 
-	@Override
-	public String toString() {
-		return "Book [isbn=" + isbn + ", authors=" + authors + ", title=" + title + ", price=" + price + ", pages="
-				+ pages + ", publisher=" + publisher + "]";
-	}
+	
+	public abstract String toString();
 
 	@Override
 	public int hashCode() {

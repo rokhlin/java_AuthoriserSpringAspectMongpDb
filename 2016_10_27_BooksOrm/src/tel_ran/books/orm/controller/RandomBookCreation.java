@@ -2,6 +2,7 @@ package tel_ran.books.orm.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import tel_ran.books.orm.dao.BooksOrm;
 import tel_ran.books.orm.entities.BestSeller;
@@ -32,8 +33,9 @@ public class RandomBookCreation {
 	}
 
 
-	private int getRandom(int a ,int b) {
-		return a + (int) (Math.random() * b); 
+	private int getRandom(int min ,int max) {
+		Random r = new Random(System.currentTimeMillis());
+		return r.nextInt(max - min) + min; 
 	}
 
 	/**
@@ -55,7 +57,7 @@ public class RandomBookCreation {
 		
 		Book res = null;
 		
-		switch(getRandom(0 ,3)) {
+		switch(getRandom(0 ,2)) {
 		case 0:
 			res = new BestSeller(isbn, authors, title, price, pages, publisher, publishYear, yearSeller);
 			break;
@@ -64,9 +66,6 @@ public class RandomBookCreation {
 			break;
 		case 2:
 			res = new TechnicalBook(isbn, authors, title, price, pages, publisher, edition, subject);
-			break;
-		case 3:
-			res = new Book(isbn, authors, title, price, pages, publisher);
 			break;
 		}
 	

@@ -25,6 +25,12 @@ public class LiteratureBook extends Book {
 	public void setPublishYear(int publishYear) {
 		this.publishYear = publishYear;
 	}
+
+	@Override
+	public String toString() {
+		return "LiteratureBook [publishYear=" + publishYear + ", isbn=" + isbn + ", authors=" + authors + ", title="
+				+ title + ", price=" + price + ", pages=" + pages + ", publisher=" + publisher + "]";
+	}
 	
 	
 
