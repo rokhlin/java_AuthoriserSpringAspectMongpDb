@@ -45,19 +45,19 @@ public class RandomBookCreation {
 	 */
 	private Book generateBook(int index) {
 		long isbn = count++;
-		String authors = "Author_"+index;
+		String authors = "Author_"+index * getRandom(1, 10);
 		String title = "Title_"+index;
 		float price =(float)getRandom(1, 100)+ (float)Math.random();
 		int pages = getRandom(0, 700);
-		String publisher = "Publisher_" +index;
+		String publisher = "Publisher_" + getRandom(1, 10);
 		int publishYear = getRandom(1980, 2016); 
 		int edition = getRandom(1, 3);
 		String subject = "Subject_"+ index;
-		int yearSeller = getRandom(1980, 2016);
+		int yearSeller = publishYear+getRandom(0, 2016-publishYear+1);
 		
 		Book res = null;
 		
-		switch(getRandom(0 ,2)) {
+		switch(getRandom(0 , 3)) {
 		case 0:
 			res = new BestSeller(isbn, authors, title, price, pages, publisher, publishYear, yearSeller);
 			break;
