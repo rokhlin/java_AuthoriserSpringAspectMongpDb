@@ -82,31 +82,28 @@ public class ShopOrm {
 	}
 	
 	@Transactional 
-	public List<String> getOwners(long barcode){
-		String jpql = "SELECT p FROM Person p JOIN p.ownews o WHERE o.barcode="+barcode;
-		Query query = entityManager.createQuery(jpql);  
-		return query.getResultList();
+	public List<Person> getOwners(long barcode){
+		Product p = entityManager.find(Product.class, barcode);
+		return p!=null ? p.getProductOwners() : null;
 	} 
+	
 	
 	@Transactional 
 	public List<Person> getRenties(long barcode){
-		String jpql = "SELECT p FROM Person p JOIN p.renties o WHERE o.barcode="+barcode;
-		Query query = entityManager.createQuery(jpql );  
-		return query.getResultList();
+		Product p = entityManager.find(Product.class, barcode);
+		return p!=null ? p.getProductRenties() : null;
 	}
 	
 	@Transactional 
 	public List<Product> getProducts(long id){
-		String jpql = "SELECT p FROM Product p JOIN p.ownews o WHERE o.id="+id;
-		Query query = entityManager.createQuery(jpql );  
-		return query.getResultList();
+		Person p  = entityManager.find(Person.class, id);
+		return p!=null ? p.getOwners() : null;
 	} 
 	
 	@Transactional 
 	public List<Product> getRentedProducts(long id){
-		String jpql = "SELECT p FROM Product p JOIN p.renties o WHERE o.id="+id;
-		Query query = entityManager.createQuery(jpql );  
-		return query.getResultList();
+		Person p  = entityManager.find(Person.class, id);
+		return p!=null ? p.getRenties() : null;
 	} 
 	
 	@Transactional 
@@ -115,6 +112,7 @@ public class ShopOrm {
 		Query query = entityManager.createQuery(jpql );  
 		return query.getResultList();
 	}
+	
 	@Transactional 
 	public List<Person> getAllPersons(){
 		String jpql = "SELECT p FROM Person p";

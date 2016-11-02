@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -23,11 +24,11 @@ public class Person implements Serializable {
 	
 	String name;
 	
-	@ManyToMany
-	@JoinTable(name = "Owners")
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "Owners" )
 	List<Product> owners;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "Renties")
 	List<Product> renties;
 

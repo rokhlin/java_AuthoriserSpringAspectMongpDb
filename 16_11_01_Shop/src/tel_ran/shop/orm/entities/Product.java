@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -21,11 +20,11 @@ public class Product implements Serializable {
 	long barCode;
 	String name;
 	
-	@ManyToMany(mappedBy="owners")
+	@ManyToMany(mappedBy="owners",fetch = FetchType.EAGER)
 	
 	List<Person> productOwners;
 	
-	@ManyToMany(mappedBy="renties")
+	@ManyToMany(mappedBy="renties",fetch = FetchType.EAGER)
 	
 	List<Person> productRenties;
 	

@@ -73,13 +73,19 @@ public class ShopTests {
 		}
 		
 	}
-
+	
 	private void updateEntityValues() {
 		persons = orm.getAllPersons();
 		products = orm.getAllProducts();
 		
 	}
 
+	
+	
+	
+	
+	
+	
 	private String getRandomProductName() {
 		String product = TYPE[generate(0,5)]
 						+ "_"
@@ -99,6 +105,14 @@ public class ShopTests {
 	@After
 	public void tearDown() throws Exception {
 	}
+	
+	
+	@Test
+	public void testRefresh() {
+		assertEquals(N_OBJECTS,persons.size());
+		assertEquals(10,persons.get(0).getOwners().size());
+	}
+	
 	
 	@Test
 	public void testAddOwnerShip() {
@@ -153,23 +167,39 @@ public class ShopTests {
 	
 	@Test
 	public void testGetOwners() {
-		List<String> owners = orm.getOwners(BARCODE);
-		display(owners);
-//		for (Person person : owners) {
-//			assertTrue(persons.contains(person));
-//			display(owners);
-//		}
 		
-	}
-	
-	
-	private void display(Object objects) {
-		for (Object object : (Iterable<Object>)objects) {
-			System.out.println(object);
+		for (int i = 0; i < products.size(); i++) {
+			long barcode = products.get(i).getBarCode();
+			List<Person> renties = orm.getOwners(barcode);
+			assertEquals(products.get(i).getProductOwners().size(),renties.size());
 		}
-		
-		
 	}
+	@Test
+	public void testGetRenties() {
+		
+		for (int i = 0; i < products.size(); i++) {
+			long barcode = products.get(i).getBarCode();
+			List<Person> renties = orm.getRenties(barcode);
+			assertEquals(products.get(i).getProductRenties().size(),renties.size());
+		}	
+	}
+	
+	@Test
+	public void testGetOwnerProducts() {
+		for (int i = 0; i < persons.size(); i++) {
+			List<Product> res = orm.getProducts(i);
+			assertEquals(persons.get(i).getOwners().size(),res.size());
+		}
+	}
+	@Test
+	public void testGetRentedProducts() {
+		for (int i = 0; i < persons.size(); i++) {
+			List<Product> res = orm.getRentedProducts(i);
+			assertEquals(persons.get(i).getRenties().size(),res.size());
+		}
+	}
+	
+
 
 	private List<Long> genBarcodes(int count) {
 		List<Long> res = new ArrayList<Long>();
