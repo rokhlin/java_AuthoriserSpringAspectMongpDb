@@ -36,7 +36,7 @@ public class Authorizer {
 
 
 	/**
-	 * This method will to call always if the user will run an inspecting method 
+	 * This method will call always if the user will run an inspecting method 
 	 * @param joinPoint
 	 * @return
 	 * @throws Throwable Security Exception: 
@@ -73,7 +73,6 @@ public class Authorizer {
 		Method[] methods = joinPoint.getTarget().getClass().getDeclaredMethods();
 		
 		for (Method method : methods) {
-			
 			if(method.isAnnotationPresent(Authorized.class)) {
 				String[] roles = method.getAnnotation(Authorized.class).roles();
 				Set<String> rolesSet = new HashSet<>();

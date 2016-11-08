@@ -13,7 +13,7 @@
           http://www.springframework.org/schema/aop
    		  http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
-	<!-- Configure the Mongo Server -->
+	<!--  Configure the Mongo Server   -->
 	<context:annotation-config />
 	<bean id="uri" class="com.mongodb.MongoClientURI">
 		<constructor-arg name="uri"
