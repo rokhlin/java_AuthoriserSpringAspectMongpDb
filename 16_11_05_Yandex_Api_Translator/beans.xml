@@ -27,7 +27,7 @@
 		<constructor-arg name="databaseName" value="mongo_tester_db" />
 	</bean>
 	
-	<bean  class="tel_ran.yandex_api.translator.dao.TranslateOperator"> </bean>
+	<bean  class="tel_ran.yandex_api.translator.dao.Translator"> </bean>
 	<mongo:repositories base-package="tel_ran.yandex_api.translator.repo"></mongo:repositories>
 
 </beans>

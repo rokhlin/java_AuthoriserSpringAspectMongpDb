@@ -5,13 +5,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.text.Format;
+import java.util.Locale;
 
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.support.StringMultipartFileEditor;
 
-import tel_ran.yandex_api.translator.dao.TranslateOperator;
+import tel_ran.yandex_api.translator.dao.Translator;
 import tel_ran.yandex_api.translator.entities.Translation;
 
 public class TranslatorTesAppl {
@@ -24,12 +25,12 @@ public class TranslatorTesAppl {
 						+"4- [exit] - exit app.\n";
 	static RestTemplate restTemplate = new RestTemplate();
 	static String url = "https://translate.yandex.net/api/v1.5/tr/translate?";
-	static TranslateOperator db;
+	static Translator db;
 	public static void main(String[] args) {
 		
 		try(AbstractApplicationContext ctx =new FileSystemXmlApplicationContext("beans.xml");	
 			BufferedReader console = new BufferedReader(new InputStreamReader(System.in));){
-			db = ctx.getBean(TranslateOperator.class);
+			db = ctx.getBean(Translator.class);
 			System.out.println(WELCOME);
 			
 		while(true) {
@@ -80,6 +81,7 @@ public class TranslatorTesAppl {
 	private static Translation translate(String line) {
 		String[] operands = line.split(" ");
 		String textFrom = line.substring(operands[0].length()+1);
+		
 		Translation res =db.get(textFrom);//Trying to find 
 
 		if(res == null)
@@ -104,6 +106,14 @@ public class TranslatorTesAppl {
 		return res;
 	}
 
-
+//	private static String cleanString(String textFrom) {
+//		try {
+//			return String.format(new Locale("ru"), new String(textFrom.getBytes("UTF-8"), "UTF-8"), null);
+//	
+//		} catch (UnsupportedEncodingException e) {
+//			e.printStackTrace();
+//		}
+//		return textFrom;
+//	}
 
 }

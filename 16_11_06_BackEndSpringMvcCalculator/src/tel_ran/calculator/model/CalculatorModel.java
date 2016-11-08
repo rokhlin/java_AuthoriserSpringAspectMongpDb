@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Set;
 
 import tel_ran.calculator.interfaces.IOperation;
-import static tel_ran.calculator.api.UrlConstants.*;
 public class CalculatorModel {
 	Map<String,IOperation> mapOperations;
 	
